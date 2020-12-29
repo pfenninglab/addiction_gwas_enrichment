@@ -1,0 +1,14 @@
+#!/bin/bash
+#SBATCH -n 1
+#SBATCH --partition=pfen_bigmem
+#SBATCH --job-name=halpeak
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=48G
+#SBATCH --error=hal_%A_%a.err.txt
+#SBATCH --output=hal_%A_%a.out.txt
+#SBATCH --array=1-3
+
+FILES=$(awk "NR==${SLURM_ARRAY_TASK_ID}" peaks.txt)
+
+halLiftover --bedType 4 ../../../../alignCactus/10plusway-master.hal Mouse $FILES Human "${FILES::-15}halLiftover_hg38.bed"

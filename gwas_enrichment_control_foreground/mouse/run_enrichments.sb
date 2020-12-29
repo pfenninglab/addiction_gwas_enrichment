@@ -1,0 +1,25 @@
+#!/bin/bash
+#SBATCH -n 1
+#SBATCH --partition=pfen_bigmem
+#SBATCH --job-name=humanctrl
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=10G
+#SBATCH --error=run_enrich_Macaque_%A_%a.err.txt
+#SBATCH --output=run_enrich_Macaque_%A_%a.out.txt
+#SBATCH --array=1-18
+
+source activate ldsc
+
+# get the GWAS for this array job
+GWAS=$(awk "NR==${SLURM_ARRAY_TASK_ID}" gwas_list_sumstats.txt)
+GWAS_Label=$(basename $GWAS | sed 's/.sumstats.gz//g')
+OUTDIR=/projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/enrichments/Controls_EUR/mouse
+
+# run LD score regression to get tissue enrichments
+ldsc.py \
+	--ref-ld-chr /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_EUR_Phase3_GRCh38_files/baseline_v1.2/baseline. \
+	--w-ld-chr /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_EUR_Phase3_GRCh38_files/weights/weights.hm3_noMHC. \
+	--ref-ld-chr-cts mouse_controls.ldcts \
+	--h2-cts $GWAS \
+	--out $OUTDIR/Control_${GWAS_Label}
