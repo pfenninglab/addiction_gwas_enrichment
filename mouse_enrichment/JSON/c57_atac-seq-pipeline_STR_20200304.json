@@ -1,0 +1,89 @@
+{
+  "atac.pipeline_type": "atac",
+  "atac.genome_tsv": "/home/bnphan/src/atac-seq-pipeline/genome/mm10/mm10.tsv",
+  "atac.align_only": false,
+  "atac.true_rep_only": false,
+  "atac.auto_detect_adapter": true,
+  "atac.adapter": "CTGTCTCTTATACACATCT",
+  "atac.cutadapt_param": "-e 0.1 -m 5",
+  "atac.multimapping": 0,
+  "atac.mapq_thresh": 30,
+  "atac.dup_marker": "picard",
+  "atac.no_dup_removal": false,
+  "atac.subsample_reads": 0,
+  "atac.xcor_subsample_reads": 25000000,
+  "atac.cap_num_peak": 300000,
+  "atac.pval_thresh": 0.01,
+  "atac.smooth_win": 150,
+  "atac.enable_idr": true,
+  "atac.idr_thresh": 0.1,
+  "atac.enable_xcor": false,
+  "atac.enable_count_signal_track": true,
+  "atac.filter_chrs": [
+    "chrM",
+    "MT"
+  ],
+  "atac.enable_preseq": true,
+  "atac.enable_compare_to_roadmap": true,
+  "atac.enable_tss_enrich": true,
+  "atac.enable_gc_bias": true,
+  "atac.align_cpu": 4,
+  "atac.align_mem_mb": 20000,
+  "atac.align_time_hr": 48,
+  "atac.align_disks": "local-disk 400 HDD",
+  "atac.filter_cpu": 2,
+  "atac.filter_mem_mb": 20000,
+  "atac.filter_time_hr": 24,
+  "atac.filter_disks": "local-disk 400 HDD",
+  "atac.bam2ta_cpu": 2,
+  "atac.bam2ta_mem_mb": 10000,
+  "atac.bam2ta_time_hr": 6,
+  "atac.bam2ta_disks": "local-disk 100 HDD",
+  "atac.spr_mem_mb": 16000,
+  "atac.xcor_cpu": 2,
+  "atac.xcor_mem_mb": 16000,
+  "atac.xcor_time_hr": 6,
+  "atac.xcor_disks": "local-disk 100 HDD",
+  "atac.call_peak_mem_mb": 16000,
+  "atac.call_peak_time_hr": 24,
+  "atac.call_peak_disks": "local-disk 200 HDD",
+  "atac.macs2_signal_track_mem_mb": 16000,
+  "atac.macs2_signal_track_time_hr": 24,
+  "atac.macs2_signal_track_disks": "local-disk 400 HDD",
+  "atac.preseq_mem_mb": 16000,
+  "atac.filter_picard_java_heap": "4G",
+  "atac.preseq_picard_java_heap": "6G",
+  "atac.fraglen_stat_picard_java_heap": "6G",
+  "atac.gc_bias_picard_java_heap": "6G",
+  "atac.paired_end": true,
+  "atac.title": "Bulk tissue aging project, STR",
+  "atac.description": "bulk tissue ATAC-seq of STR 7-12 week old mice",
+  "atac.fastqs_rep1_R1": [
+    "/home/alawler/projects/TissueATAC/NextSeq_10-26-17/fastq_flowcell1/082317C_STR_S2_R1_001.fastq.gz"
+  ],
+  "atac.fastqs_rep1_R2": [
+    "/home/alawler/projects/TissueATAC/NextSeq_10-26-17/fastq_flowcell1/082317C_STR_S2_R2_001.fastq.gz"
+  ],
+  "atac.fastqs_rep2_R1": [
+    "/home/alawler/projects/TissueATAC/NextSeq_10-26-17/fastq_flowcell1/082417C_STR1_S6_R1_001.fastq.gz",
+    "/home/alawler/projects/TissueATAC/NextSeq_10-26-17/fastq_flowcell1/082417C_STR2_S7_R1_001.fastq.gz"
+  ],
+  "atac.fastqs_rep2_R2": [
+    "/home/alawler/projects/TissueATAC/NextSeq_10-26-17/fastq_flowcell1/082417C_STR1_S6_R2_001.fastq.gz",
+    "/home/alawler/projects/TissueATAC/NextSeq_10-26-17/fastq_flowcell1/082417C_STR2_S7_R2_001.fastq.gz"
+  ],
+  "atac.fastqs_rep3_R1": [
+    "/home/alawler/projects/TissueATAC/NextSeq_10-26-17/fastq_flowcell2/082917B_STR1_S3_R1_001.fastq.gz",
+    "/home/alawler/projects/TissueATAC/NextSeq_10-26-17/fastq_flowcell2/082917B_STR2_S4_R1_001.fastq.gz"
+  ],
+  "atac.fastqs_rep3_R2": [
+    "/home/alawler/projects/TissueATAC/NextSeq_10-26-17/fastq_flowcell2/082917B_STR1_S3_R2_001.fastq.gz",
+    "/home/alawler/projects/TissueATAC/NextSeq_10-26-17/fastq_flowcell2/082917B_STR2_S4_R2_001.fastq.gz"
+  ],
+  "atac.fastqs_rep4_R1": [
+    "/home/alawler/projects/TissueATAC/NextSeq_10-26-17/fastq_flowcell2/090417B_STR1_S7_R1_001.fastq.gz"
+  ],
+  "atac.fastqs_rep4_R2": [
+    "/home/alawler/projects/TissueATAC/NextSeq_10-26-17/fastq_flowcell2/090417B_STR1_S7_R2_001.fastq.gz"
+  ]
+}
