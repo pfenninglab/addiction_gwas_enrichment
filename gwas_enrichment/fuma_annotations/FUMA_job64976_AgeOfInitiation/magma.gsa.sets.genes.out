@@ -1,0 +1,11 @@
+# ALPHA = 0.05
+# NUMBER_OF_TESTS = 15481
+
+# _SET1_  VARIABLE = Curated_gene_sets:reactome_mecp2_regulates_transcription_factors (set)
+# _SET1_  NGENES = 4
+# _SET1_  P-VALUE = 1.57039e-06
+_SET1_   GENE              CHR      START       STOP  NSNPS  NPARAM       N        ZSTAT            P
+_SET1_   ENSG00000118260     2  208394461  208468155    196      40  243621       1.7337     0.041488
+_SET1_   ENSG00000132170     3   12328867   12475855    528      49  247101       1.5646     0.058835
+_SET1_   ENSG00000081189     5   88013975   88199922    485      57  252318        4.807   7.6598e-07
+_SET1_   ENSG00000078328    16    6069095    7763340  14559     626  247479       2.8577    0.0021333

@@ -1,0 +1,60 @@
+# MEAN_SAMPLE_SIZE = 45850
+# TOTAL_GENES = 17187
+# TEST_DIRECTION = one-sided, positive (set), one-sided, positive (covar)
+# CONDITIONED_INTERNAL = gene size, gene density, sample size, inverse mac, log(gene size), log(gene density), log(sample size), log(inverse mac)
+# CONDITIONED_HIDDEN = Average (covar)
+VARIABLE                             TYPE  NGENES         BETA     BETA_STD           SE            P FULL_NAME
+Adipose_Subcutaneous                COVAR   17187    -0.022766    -0.045391     0.011236      0.97862 Adipose_Subcutaneous
+Adipose_Visceral_Omentum            COVAR   17187    -0.028584    -0.055462     0.011631        0.993 Adipose_Visceral_Omentum
+Adrenal_Gland                       COVAR   17187   -0.0093589    -0.018044     0.010491      0.81383 Adrenal_Gland
+Artery_Aorta                        COVAR   17187    -0.019447    -0.039659     0.010688      0.96557 Artery_Aorta
+Artery_Coronary                     COVAR   17187    -0.034765    -0.069143     0.012392      0.99749 Artery_Coronary
+Artery_Tibial                       COVAR   17187      -0.0157    -0.032304     0.010507      0.93244 Artery_Tibial
+Bladder                             COVAR   17187    -0.033148    -0.064549       0.0136       0.9926 Bladder
+Brain_Amygdala                      COVAR   17187     0.016484     0.028048    0.0082341     0.022656 Brain_Amygdala
+Brain_Anterior_cingulate_cor...     COVAR   17187     0.018831     0.033231    0.0075796     0.006493 Brain_Anterior_cingulate_cortex_BA24
+Brain_Caudate_basal_ganglia         COVAR   17187     0.012109      0.02089    0.0082453     0.070988 Brain_Caudate_basal_ganglia
+Brain_Cerebellar_Hemisphere         COVAR   17187     0.018872     0.037845    0.0063474    0.0014757 Brain_Cerebellar_Hemisphere
+Brain_Cerebellum                    COVAR   17187     0.019747      0.03917    0.0065532     0.001294 Brain_Cerebellum
+Brain_Cortex                        COVAR   17187     0.016874     0.030743    0.0074919     0.012156 Brain_Cortex
+Brain_Frontal_Cortex_BA9            COVAR   17187     0.018036     0.033203    0.0072288    0.0063021 Brain_Frontal_Cortex_BA9
+Brain_Hippocampus                   COVAR   17187     0.018875     0.031923    0.0083646     0.012024 Brain_Hippocampus
+Brain_Hypothalamus                  COVAR   17187     0.018238     0.031346    0.0084788     0.015743 Brain_Hypothalamus
+Brain_Nucleus_accumbens_basa...     COVAR   17187     0.013782     0.023884    0.0079551      0.04161 Brain_Nucleus_accumbens_basal_ganglia
+Brain_Putamen_basal_ganglia         COVAR   17187     0.012345     0.020981    0.0083169     0.068872 Brain_Putamen_basal_ganglia
+Brain_Spinal_cord_cervical_c...     COVAR   17187     0.011922     0.021398    0.0090224     0.093191 Brain_Spinal_cord_cervical_c-1
+Brain_Substantia_nigra              COVAR   17187     0.016064     0.027614    0.0089809      0.03684 Brain_Substantia_nigra
+Breast_Mammary_Tissue               COVAR   17187    -0.028615    -0.054972     0.013221      0.98477 Breast_Mammary_Tissue
+Cells_Cultured_fibroblasts          COVAR   17187    -0.013635      -0.0292    0.0068092      0.97737 Cells_Cultured_fibroblasts
+Cells_EBV-transformed_lympho...     COVAR   17187   -0.0075793     -0.01652    0.0051483      0.92951 Cells_EBV-transformed_lymphocytes
+Cervix_Ectocervix                   COVAR   17187    -0.014061    -0.027538     0.012673      0.86638 Cervix_Ectocervix
+Cervix_Endocervix                   COVAR   17187   -0.0033979    -0.006721     0.012047      0.61105 Cervix_Endocervix
+Colon_Sigmoid                       COVAR   17187    0.0085222     0.016659     0.013049      0.25686 Colon_Sigmoid
+Colon_Transverse                    COVAR   17187    0.0054488     0.010007     0.011985      0.32468 Colon_Transverse
+Esophagus_Gastroesophageal_J...     COVAR   17187   0.00032453   0.00063834     0.013422      0.49036 Esophagus_Gastroesophageal_Junction
+Esophagus_Mucosa                    COVAR   17187   -0.0074006    -0.014296     0.007984      0.82301 Esophagus_Mucosa
+Esophagus_Muscularis                COVAR   17187     0.007859      0.01549     0.013006      0.27284 Esophagus_Muscularis
+Fallopian_Tube                      COVAR   17187   -0.0042113   -0.0081619     0.012309      0.63387 Fallopian_Tube
+Heart_Atrial_Appendage              COVAR   17187   -0.0092855    -0.016657    0.0099936      0.82359 Heart_Atrial_Appendage
+Heart_Left_Ventricle                COVAR   17187   -0.0082921    -0.013828    0.0095563      0.80722 Heart_Left_Ventricle
+Kidney_Cortex                       COVAR   17187    -0.016801    -0.029477    0.0094133      0.96284 Kidney_Cortex
+Kidney_Medulla                      COVAR   17187     -0.02023    -0.037356    0.0096723      0.98175 Kidney_Medulla
+Liver                               COVAR   17187   -0.0053822   -0.0096821    0.0066112       0.7922 Liver
+Lung                                COVAR   17187    -0.014658    -0.028316     0.009568      0.93723 Lung
+Minor_Salivary_Gland                COVAR   17187   -0.0055177     -0.01026     0.010053      0.70844 Minor_Salivary_Gland
+Muscle_Skeletal                     COVAR   17187   -0.0014635   -0.0027673    0.0071908      0.58063 Muscle_Skeletal
+Nerve_Tibial                        COVAR   17187   -0.0028522   -0.0057357     0.010552      0.60653 Nerve_Tibial
+Ovary                               COVAR   17187    -0.010147    -0.020556     0.010088      0.84273 Ovary
+Pancreas                            COVAR   17187    -0.008684    -0.014508    0.0087725      0.83888 Pancreas
+Pituitary                           COVAR   17187     0.020303     0.037797    0.0092776     0.014328 Pituitary
+Prostate                            COVAR   17187   -0.0060127    -0.011395     0.012463      0.68525 Prostate
+Skin_Not_Sun_Exposed_Suprapu...     COVAR   17187   -0.0054802    -0.010559    0.0081185      0.75017 Skin_Not_Sun_Exposed_Suprapubic
+Skin_Sun_Exposed_Lower_leg          COVAR   17187   -0.0053897    -0.010449     0.008139      0.74608 Skin_Sun_Exposed_Lower_leg
+Small_Intestine_Terminal_Ile...     COVAR   17187   -0.0012394   -0.0022764    0.0099583      0.54953 Small_Intestine_Terminal_Ileum
+Spleen                              COVAR   17187    0.0018023    0.0035681    0.0076901      0.40735 Spleen
+Stomach                             COVAR   17187   -0.0064652    -0.011732     0.012519      0.69722 Stomach
+Testis                              COVAR   17187  -0.00089489   -0.0015435    0.0058255      0.56104 Testis
+Thyroid                             COVAR   17187      -0.0111    -0.021966     0.010036      0.86564 Thyroid
+Uterus                              COVAR   17187    -0.012288     -0.02502     0.011403       0.8594 Uterus
+Vagina                              COVAR   17187    -0.019012    -0.036334     0.011524      0.95049 Vagina
+Whole_Blood                         COVAR   17187   0.00097442    0.0017565    0.0058925      0.43433 Whole_Blood
