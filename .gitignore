@@ -5,6 +5,10 @@ __pycache__/
 *.gtf
 *.fasta
 *.fa
+*HoneyBadger*
+*honeybadger*
+*mous_DHS*
+*mm10_univ_dhs_ucsc*
 
 celltype_specific_ml_models/FASTA/
 celltype_specific_ml_models/FASTA_CV/
