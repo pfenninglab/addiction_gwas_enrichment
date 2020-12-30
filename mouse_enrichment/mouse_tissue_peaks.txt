@@ -1,0 +1,13 @@
+Mo2015_EXCpos_Ctx	/projects/pfenninggroup/machineLearningForComputationalBiology/regElEvoGrant/Mo2015Data/AtacExcitatoryOut/peak/macs2/idr/optimal_set/AtacMouseExcitatory_rep1-rep2.IDR0.1.filt.narrowPeak.gz
+Mo2015_PVpos_Ctx	/projects/pfenninggroup/machineLearningForComputationalBiology/regElEvoGrant/Mo2015Data/AtacPVOut/peak/macs2/idr/optimal_set/AtacMousePV_ppr.IDR0.1.filt.narrowPeak.gz
+Mo2015_VIPpos_Ctx	/projects/pfenninggroup/machineLearningForComputationalBiology/regElEvoGrant/Mo2015Data/AtacVIPOut/peak/macs2/idr/optimal_set/AtacMouseVIP_ppr.IDR0.1.filt.narrowPeak.gz
+Pfenning_PVpos_Ctx	/projects/pfenninggroup/mouseCxStr/PV_INTACT_M1_CTX/Nextseq/M1_PVpos_out/peak/macs2/idr/optimal_set/M1_PVpos_out_ppr.IDR0.1.filt.narrowPeak.gz
+Pfenning_PVpos_Cpu	/projects/pfenninggroup/mouseCxStr/parkinsons/NovaseqData/KundajePipelineOutputs/out_Saline_STR_PVpos/cromwell-executions/atac/f979ac9d-d0cd-4129-8b80-2ea88de8bd2b/call-idr/shard-0/execution/rep1_rep2.idr0.1.narrowPeak.gz
+Pfenning_D1pos_Nac	/projects/pfenninggroup/mouseCxStr/MotorLearning_Novaseq/ATACseqPipelineOutputs/D1+.NAcc.Naive/peak/idr_reproducibility/idr.optimal_peak.narrowPeak.gz
+Pfenning_D1pos_Cpu	/projects/pfenninggroup/mouseCxStr/MotorLearning_Novaseq/ATACseqPipelineOutputs/D1+.Cpu.Naive/peak/idr_reproducibility/idr.optimal_peak.narrowPeak.gz
+Pfenning_D2pos_Nac	/projects/pfenninggroup/mouseCxStr/MotorLearning_Novaseq/ATACseqPipelineOutputs/D2+.NAcc.Naive/peak/idr_reproducibility/idr.optimal_peak.narrowPeak.gz
+Pfenning_D2pos_Cpu	/projects/pfenninggroup/mouseCxStr/MotorLearning_Novaseq/ATACseqPipelineOutputs/D2+.Cpu.Naive/peak/idr_reproducibility/idr.optimal_peak.narrowPeak.gz
+Pfenning_SSTpos_Ctx	/projects/pfenninggroup/machineLearningForComputationalBiology/regElEvoGrant/MouseDNase/CortexSSTPlusYoung/atac/e2acdbc2-2c27-4cc9-8fc9-a98b06647d96/call-reproducibility_idr/execution/idr.optimal_peak.narrowPeak.gz
+Pfenning_SSTpos_Cpu	/projects/pfenninggroup/machineLearningForComputationalBiology/regElEvoGrant/MouseDNase/StriatumSSTPlusYoung/atac/114a22ee-1810-49b3-ac7b-170baeeac763/call-reproducibility_idr/execution/idr.optimal_peak.narrowPeak.gz
+Pfenning_bulk_Ctx	/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/mouse_enrichment/ATACseqPipelineOutputs/CTX/peak/idr_reproducibility/idr.optimal_peak.narrowPeak.gz
+Pfenning_bulk_Cpu	/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/mouse_enrichment/ATACseqPipelineOutputs/STR/peak/idr_reproducibility/idr.optimal_peak.narrowPeak.gz
