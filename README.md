@@ -11,18 +11,18 @@
 
 [link] gwas_correlation
 
-### GWAS enrichment of human foregrounds
+### GWAS enrichment of human OCRs
 [insert Figure 1, Supplemental Figure 2]
 
 [link] gwas_enrichment
 [link] gwas_enrichment_control_foreground
 
-### GWAS enrichment of mouse (human-orthologous) foregrounds
+### GWAS enrichment of mouse (human-orthologous) OCRs
 [insert Figure 2, Supplemental Figure 3]
 
 [link] mouse_enrichment
 
-### GWAS enrichment of human cell type-specific foregrounds
+### GWAS enrichment of human cell type-specific OCRs
 [insert Figure 3]
 
 [link] model_prioritized_fullard_enrichments
@@ -36,3 +36,5 @@
 [insert Supplemental Figure 5]
 
 [link] genomeTracks
+
+

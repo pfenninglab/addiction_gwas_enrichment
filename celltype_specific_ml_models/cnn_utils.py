@@ -21,14 +21,15 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
 # make sure running on GPU #
 tf.config.experimental.list_physical_devices('GPU')
 # tf.get_logger().setLevel('WARNING')
-
+# reduce float precision for models
+tf.keras.backend.set_floatx('float32')
 
 def onehot_seq(seq):
     letter_to_index =  {'A':0, 'a':0,
                         'C':1, 'c':1,
                         'G':2, 'g':2,
                         'T':3, 't':3}
-    to_return = np.zeros((len(seq),4), dtype='int8')
+    to_return = np.zeros((len(seq),4), dtype='uint8')
     for idx,letter in enumerate(seq):
         if letter not in ['N','n']:
             to_return[idx,letter_to_index[letter]] = 1
