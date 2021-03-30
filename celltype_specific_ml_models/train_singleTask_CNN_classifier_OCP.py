@@ -146,8 +146,9 @@ def plot_training_performance(args, hist, clr ):
         clr (argparse):
     """
     # plot performance by iteration
-    if not os.path.exists(f'{args.out_dir}/plots/{label}'):
-        os.makedirs(f'{args.out_dir}/plots/{label}')
+    model_train_performance = f"{args.out_dir}/plots/{args.prefix}/{label}.pdf"
+    if not os.path.exists(f'{args.out_dir}/plots/{args.prefix}'):
+        os.makedirs(f'{args.out_dir}/plots/{args.prefix}')
     fig, axs = plt.subplots(2, 2, figsize=(8, 6))
     fig.suptitle(f"Training performance {label}")
     axs[0, 0].plot(clr.history['iterations'], clr.history['lr'])
@@ -198,12 +199,11 @@ def main(args):
         (x_valid, y_valid, ids_valid) = encode_sequence(args.valid_fasta_pos, args.valid_fasta_neg, size = args.seq_length, shuffleOff = False)
         #
         model, clr, hist = train_model_clr(x_train, y_train, x_valid, y_valid, args)
-        plot_training_performance(args, hist, clr )
         # make sure to create folder
         if not os.path.exists(f'{args.out_dir}/models/{args.prefix}'):
             os.makedirs(f'{args.out_dir}/models/{args.prefix}') 
         model.save(args.model_name)
-        #
+        plot_training_performance(args, hist, clr )
     elif args.mode == 'evaluate':
         print('In evaluation mode.')
         if not os.path.exists(args.model_name):
@@ -211,10 +211,10 @@ def main(args):
             return
         (x_valid, y_valid, ids_valid) = encode_sequence(args.valid_fasta_pos, args.valid_fasta_neg, size = args.seq_length, shuffleOff = True)
         df = evaluate_sequences(args.model_name, x_valid, y_valid, ids_valid, args)
-        model_test_performance = f'{args.out_dir}/predictions/cnn_v2/{args.prefix}/{label}.performance.feather'
+        model_test_performance = f'{args.out_dir}/predictions/{args.prefix}/{label}.performance.feather'
         # save model performances to feather object
-        if not os.path.exists(f'{args.out_dir}/predictions/cnn_v2/{args.prefix}'):
-            os.makedirs(f'{args.out_dir}/predictions/cnn_v2/{args.prefix}')
+        if not os.path.exists(f'{args.out_dir}/predictions/{args.prefix}'):
+            os.makedirs(f'{args.out_dir}/predictions/{args.prefix}')
         df.to_feather(model_test_performance)
         print(f'Model performance written to {model_test_performance}')
         #
@@ -225,13 +225,14 @@ def main(args):
             return
         (x, ids) = encode_sequence3(args.predict_fasta, size = args.seq_length)
         df = predict_sequences(args.model_name, x, ids)
-        model_predictions = f'{args.out_dir}/predictions/cnn_v2/{args.prefix}/{label}.predictions.txt'
+        model_predictions = f'{args.out_dir}/predictions/{args.prefix}/{label}.predictions.txt'
         # save model performances to feather object
-        if not os.path.exists(f'{args.out_dir}/predictions/cnn_v2/{args.prefix}'):
-            os.makedirs(f'{args.out_dir}/predictions/cnn_v2/{args.prefix}') 
+        if not os.path.exists(f'{args.out_dir}/predictions/{args.prefix}'):
+            os.makedirs(f'{args.out_dir}/predictions/{args.prefix}') 
         np.savetxt(model_predictions, df, axis = 1)
         print(f'Prediction written to {model_predictions}')
     return
+
 
 
 if __name__ == '__main__':  

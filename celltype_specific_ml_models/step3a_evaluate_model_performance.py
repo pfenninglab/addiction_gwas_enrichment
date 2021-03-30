@@ -5,19 +5,17 @@ import glob, os, sys
 
 
 class Namespace:
-    def __init__(self, **kwargs):
-        self.__dict__.update(kwargs)
+	def __init__(self, **kwargs):
+		self.__dict__.update(kwargs)
 
 #####################################################
 # Creating an empty Dataframe with column names only
-df = pd.DataFrame(columns=[
-	'sample','model_class', 'model_species',  'model', 
-	'accuracy', 'auROC','auPRC', 'f1_score','fhalf_score'])
+df = pd.DataFrame()
 
 #################################################
 # read in CNN models and scored test sequences
-for model_name in sorted(glob.glob('cnn_v2/singleTask/*/*.h5')):
-	featherFile = model_name.replace('cnn_v2/singleTask','predictions/cnn_v2').replace('.h5','_testPerformance.feather')
+for model_name in sorted(glob.glob('models/*/*.h5')):
+	featherFile = model_name.replace('models','predictions').replace('.h5','.performance.feather')
 	if os.path.exists(featherFile):
 		tmp = pd.read_feather(featherFile)
 		tmp['model_species'] = 'Mouse'
