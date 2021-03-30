@@ -198,8 +198,8 @@ def get_model(input_shape, args):
     # 1 max pooling layer
     model.add(MaxPooling1D(pool_size=args.max_pool_size, strides=args.max_pool_stride))
     # 1 dense layer 
-    model.add(Dense(units = args.dense_filters, activation = 'relu', kernel_regularizer = l2(l=args.l2_reg)))
     model.add(Flatten())
+    model.add(Dense(units = args.dense_filters, activation = 'relu', kernel_regularizer = l2(l=args.l2_reg)))
     # dropout to output layer
     model.add(Dropout(rate = args.dropout))
     # output layer
