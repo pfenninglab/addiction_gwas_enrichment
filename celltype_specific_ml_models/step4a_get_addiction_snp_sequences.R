@@ -72,11 +72,9 @@ seqNonEffect <- xscat(getSeq(genome,paste0('chr',snpDat$chr),snpDat$pos-offset,s
 names(seqNonEffect) = snpDat$rsID
 
 # write ref/alt fasta of snps
-writeXStringSet(seqEffect, 'FASTA/addiction_snps_allele_effect_501.fa', format = 'fasta',width = peakLength)
-writeXStringSet(seqNonEffect, 'FASTA/addiction_snps_allele_nonEffect_501.fa', format = 'fasta',width = peakLength)
-
-
-
-
+writeXStringSet(seqEffect, paste0('FASTA/addiction_snps_allele_effect_',peakLength,'.fa'),
+                format = 'fasta',width = peakLength)
+writeXStringSet(seqNonEffect, paste0('FASTA/addiction_snps_allele_nonEffect_',peakLength,'.fa'),
+                format = 'fasta',width = peakLength)
 
 
