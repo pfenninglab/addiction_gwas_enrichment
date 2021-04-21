@@ -10,6 +10,7 @@ __pycache__/
 *mous_DHS*
 *mouseDHS*
 *mm10_univ_dhs_ucsc*
+*predictions*
 
 celltype_specific_ml_models/FASTA/
 celltype_specific_ml_models/FASTA_CV/
