@@ -22,8 +22,7 @@ python /home/bnphan/src/ldsc/ldsc.py \
 	--ref-ld-chr /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_EUR_Phase3_GRCh38_files/baseline_v1.2/baseline. \
 	--w-ld-chr /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/1000G_EUR_Phase3_GRCh38_files/weights/weights.hm3_noMHC. \
 	--ref-ld-chr-cts Fullard_cnn_scored_peaks.ldcts \
-	--h2-cts $GWAS \
-	--out $OUTDIR/Fullard_CNNscored_enrichment_${GWAS_Label}
+	--h2-cts $GWAS --out $OUTDIR/Fullard_CNNscored_enrichment_${GWAS_Label}
 
 # # run LD score regression on SVM scored peaks
 # OUTDIR=ldsc_enrichments/Fullard_svm_scored_enrichments

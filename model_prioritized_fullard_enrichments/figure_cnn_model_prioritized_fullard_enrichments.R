@@ -63,8 +63,8 @@ fullard2$Region = factor(ss(fullard2$Name,'_',1), rev(regions))
 fullard2 = fullard2[fullard2$Region %in% regions2,]
 fullard2$bigRegion = ifelse(fullard2$Region %in% c("AMY","HIPP", "MDT", "PUT", "NAC"),
                             'Subcortex','Cortex')
-fullard2$Celltype = factor(ss(fullard2$Name,'_',2))
-fullard2$cutOff = as.numeric(ss(fullard2$Name,'_',3))
+fullard2$Celltype = factor(ss(ss(fullard2$Name,'_',2), '-', 2))
+fullard2$cutOff = as.numeric(ss(fullard2$Name,'_cutoff',2))
 fullard2$Refinement = 'CNN'
 
 #####################################################
@@ -79,7 +79,7 @@ fullard = rbind(fullard1,fullard2)
 fullard = fullard[fullard$Celltype %in% celltypes,]
 fullard$Region = factor(fullard$Region, rev(regions2))
 fullard$Celltype = factor(fullard$Celltype, celltypes)
-fullard = fullard[complete.cases(fullard),]
+# fullard = fullard[complete.cases(fullard),]
 
 # log p-values for plotting
 fullard$FDR = p.adjust(fullard$Coefficient_P_value,'fdr')
@@ -89,20 +89,16 @@ fullard$Log_FDR = -log10(fullard$FDR)
 fullard$FDR_signif = fullard$FDR < 0.05
 fullard$Log_bonf = -log10(fullard$P.bonferroni)
 
-ind = 
-with(fullard[ind,], table(phenotype))
-with(fullard[ind,], table(Region))
-with(fullard[ind,], table(Celltype))
-
 fullard[which(fullard$FDR_signif &fullard$phenotype=='RiskyBehavior' ),]
 
 ind2 = which(fullard$P.bonferroni < 0.05)
 with(fullard[ind2,], table(phenotype))
 with(fullard[ind2,], table(Region))
+with(fullard[ind2,], table(Celltype))
 
 
 for (cut in unique(fullard$cutOff)){
-  fdrPlotName = paste0('plots/figure_cnn_model_prioritized_fullard_addiction_enrichment_fdrPlot_',cut,'_20200730.pdf')
+  fdrPlotName = paste0('plots/figure_cnn_model_prioritized_fullard_addiction_enrichment_fdrPlot_',cut,'_20210408.pdf')
   # make pretty plots
   tmp = fullard %>% filter(bigGWAS==TRUE, cutOff==cut | Celltype=='NeuN+')
   pdf( fdrPlotName, h = 5, w = 8)
@@ -121,7 +117,7 @@ for (cut in unique(fullard$cutOff)){
   dev.off()
   
   
-  effPlotName = paste0('plots/figure_cnn_model_prioritized_fullard_addiction_enrichment_effectSizes_',cut,'_20200730.pdf')
+  effPlotName = paste0('plots/figure_cnn_model_prioritized_fullard_addiction_enrichment_effectSizes_',cut,'_20210408.pdf')
   pdf(effPlotName , h = 4, w = 8)
   p2 = ggplot(data= tmp, aes(x = Region, y = Coefficient*10^8, fill = Celltype, alpha = FDR_signif))  + 
     geom_bar(stat = 'identity',aes(fill=Celltype, color = FDR_signif), position="dodge") + 
