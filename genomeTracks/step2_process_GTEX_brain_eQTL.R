@@ -41,7 +41,7 @@ linkCTX = with(sigVarMat[sigVarMat$Region %in% c('Anterior_cingulate_cortex_BA24
                                                'Cortex','Frontal_Cortex_BA9'),], 
              data.frame(chr1 = chr, start1 = pos, end1 = pos + 1, 
                         chr2 = chr, start2 = pos - tss_distance, 
-                        end2 = pos -tss_distance+ 1, score = -log10(pval_beta)))
+                        end2 = pos - tss_distance+ 1, score = -log10(pval_beta)))
 write.table(linkCTX, file = 'BED/GTEX_brain_NeuN+_Causal_eQTL_CTX.txt',
             quote = FALSE, sep = '\t',col.names = F,row.names = F)
 

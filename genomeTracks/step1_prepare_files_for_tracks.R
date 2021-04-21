@@ -9,133 +9,61 @@ library(tidyverse)
 library(SummarizedExperiment)
 library(GenomicRanges)
 
-######################
-# load in annotated SNPs
-load('../gwas_enrichment/rdas/addiction_snp_withCausalDB_Fullard_overlap_rse.rda')
-rowData(snpRSE) = snpDat2 = snpDat
+####################################################
+# load in annotated SNPs w/ CNN scores for each SNP
+out_rds = '../gwas_enrichment/rdas/addiction_snp_cnn_scores_qval_20210413.rds'
+df_snp_long = readRDS(out_rds)
+df_snp_long %>% filter(tier == 'TierA') %>% pull(snp_delta_prob) %>% summary()
 
-# load in the SNP zscores
-load('../celltype_specific_ml_models/rdas/addiction_snp_cnn_score_20200727.rda')
-celltypes = c('Ctx-EXC','Str-D1', 'Str-D2')
-rowData(snpRSE)$effect = df_effect[rownames(rowData(snpRSE)),celltypes]
-df_effect = df_effect[,celltypes]
+df_snp_long2 = df_snp_long %>% distinct(rsID, group, .keep_all = T)
+snp_gr = df_snp_long %>% arrange(r2) %>% distinct(rsID, .keep_all = T) %>%
+  mutate(chr = paste0('chr',chr), start = pos, end = pos, score = r2) %>% 
+  column_to_rownames('rsID') %>% data.frame() %>% GRanges()
 
-outFile='tables/addiction_snp_cnn_effectAllele_fullardPeaks_causalDB.xlsx'
-# writexl::write_xlsx(cbind(snpDat, df_effect[rownames(rowData(snpRSE)),]),  outFile)
-outFile2='tables/addiction_snp_cnn_nonEffAllele_fullardPeaks_causalDB.xlsx'
-# writexl::write_xlsx(cbind(snpDat, df_nonEff[rownames(rowData(snpRSE)),]),  outFile2)
-
-indUnique = which(!duplicated(snpDat$rsID))
-snpRSE = snpRSE[indUnique, ]
-snpRSE = snpRSE[order(snpRSE)]
-snpDat = snpDat[indUnique, ]
-
-###############
-# make SNP tracks for pyGenomeTracks
-# export.bed(rowRanges(snpRSE), file.path('BED','addiction_gwas_all.bed'))
+# export.bed(snp_gr, file.path('BED','addiction_gwas_all.bed'))
 
 #lead/independent significant SNP track
-snpRSE_lead = snpRSE[rowData(snpRSE)$rsID == rowData(snpRSE)$IndSigSNP,]
-rowRanges(snpRSE_lead)$score = -log10(rowRanges(snpRSE_lead)$gwasP)
-# export.bed(rowRanges(snpRSE_lead), file.path('BED','addiction_gwas_IndSigSNP.bed'))
+snpRSE_lead = snp_gr[df_snp_long2 %>% filter(rsID == IndSigSNP) %>% pull(rsID)]
+# export.bed(snpRSE_lead, file.path('BED','addiction_gwas_IndSigSNP.bed'))
 
-#finemapped causal SNPs
-snpRSE_fine = snpRSE[rowData(snpRSE)$isCausal,]
-rowRanges(snpRSE_fine)$score = rowRanges(snpRSE_fine)$avgPP * 1000 # finemapp PP
-# export.bed(rowRanges(snpRSE_fine), file.path('BED','addiction_gwas_finemapped.bed'))
 
 #SNPs in NeuN + peaks
-snpRSE_peaks = snpRSE[rowData(snpRSE)$numPeakOverlap > 0,]
-rowRanges(snpRSE_peaks)$score = rowRanges(snpRSE_peaks)$numPeakOverlap
-# export.bed(rowRanges(snpRSE_peaks), file.path('BED','addiction_gwas_inNeuNPeaks.bed'))
+snpRSE_peaks = snp_gr[df_snp_long2 %>% filter(inNeuN) %>% pull(rsID)]
+# export.bed(snpRSE_peaks, file.path('BED','addiction_gwas_inNeuNPeaks.bed'))
 
-#pre-ML model filtered SNPs
-snpRSE_filtered = snpRSE[rowData(snpRSE)$numPeakOverlap > 0 & 
-                           rowData(snpRSE)$isCausal,]
-length(unique(rowData(snpRSE_filtered)$GenomicLocus)) # 54
+#####################################################
+# export the different prioritized SNPs split by tiers
+export.bed(snp_gr[df_snp_long %>% distinct(rsID, .keep_all = T) %>% 
+                    filter(tier == 'TierA') %>% pull(rsID)], 
+           file.path('BED','addiction_gwas_TierA_candidate.bed'))
+export.bed(snp_gr[df_snp_long %>% distinct(rsID, .keep_all = T) %>% 
+                    filter(tier == 'TierB') %>% pull(rsID)], 
+           file.path('BED','addiction_gwas_TierB_candidate.bed'))
+export.bed(snp_gr[df_snp_long %>% distinct(rsID, .keep_all = T) %>% 
+                    filter(tier == 'TierC') %>% pull(rsID)], 
+           file.path('BED','addiction_gwas_TierC_candidate.bed'))
 
-####################################################
-# inPeak2 SNP in OFC, VLPFC, DLPFC, STC, PUT, NAC
-ctx_regions = c('DLPFC_NeuN+','VLPFC_NeuN+','OFC_NeuN+','STC_NeuN+')
-str_regions = c('PUT_NeuN+','NAC_NeuN+')
+########################################
+# export the Tier A SNP split by group 
+tmp = df_snp_long %>% filter(tier == 'TierA') %>% distinct(rsID, group, .keep_all = T) %>% 
+  mutate(chr = paste0('chr',chr), start = pos, name = rsID, end = pos, score = snp_delta_prob)
+tmpList = split(tmp, tmp$group)
+sapply(tmpList, nrow)
 
-rowData(snpRSE_filtered)$inCtx = apply(assays(snpRSE_filtered)$overlap[,ctx_regions], 1, sum) > 0
-rowData(snpRSE_filtered)$inStr = apply(assays(snpRSE_filtered)$overlap[,str_regions], 1, sum) > 0
-rowData(snpRSE_filtered)$inPeak2 = rowData(snpRSE_filtered)$inStr | rowData(snpRSE_filtered)$inCtx
-
-####################################################
-# define candidate SNPs, w/ any enhancer Z-score > 2
-cutOff_effect = .5
-cutOff_delta = 0.05
-
-indCtxList = lapply(names(df_effect)[1], function(x) {
-  eff = df_effect[rownames(snpRSE_filtered),x]
-  non = df_nonEff[rownames(snpRSE_filtered),x]
-  # either effect or non-effect allele is predicted enhancer
-  isEnh = (eff > cutOff_effect )| (non > cutOff_effect)
-  del = df_delta[rownames(snpRSE_filtered),x]
-  # SNP is in a cortical NeuN+ peak
-  inCtx = rowData(snpRSE_filtered)$inCtx
-  # there is a big deltaSNP score
-  ind = which(inCtx & isEnh & abs(del) > cutOff_delta)
-  return(ind)
-  })
-names(indCtxList) = names(df_effect)[1]
-
-indStrList = lapply(names(df_effect)[2:3], function(x) {
-  eff = df_effect[rownames(snpRSE_filtered),x]
-  non = df_nonEff[rownames(snpRSE_filtered),x]
-  # either effect or non-effect allele is predicted enhancer
-  isEnh = (eff > cutOff_effect )| (non > cutOff_effect)
-  del = df_delta[rownames(snpRSE_filtered),x]
-  # SNP is in a striatum NeuN+ peak
-  inStr = rowData(snpRSE_filtered)$inStr
-  # there is a big deltaSNP score
-  ind = which(inStr & isEnh & abs(del) > cutOff_delta)
-  return(ind)
+lapply(names(tmpList), function(name){
+  export.bed(GRanges(tmpList[[name]]), 
+             file.path('BED',paste0('addiction_gwas_CNN_scored_',name,'.bed')))
 })
-names(indStrList) = names(df_effect)[2:3]
-
-indList = c(indCtxList, indStrList)
-lengths(indList)
-
-for(name in names(indList)){
-  export.bed(rowRanges(snpRSE_filtered[indList[[name]],]), 
-             file.path('BED',paste0('addiction_gwas_candidate_',name,'.bed')))
-}
-
-# get all candidate SNPs
-snpRSE_ctx_candidate = snpRSE_filtered[unique(unlist(indCtxList)), ]
-snpRSE_str_candidate = snpRSE_filtered[unique(unlist(indStrList)), ]
-snpRSE_candidate = snpRSE_filtered[unique(unlist(indList)), ]
-
-export.bed(rowRanges(snpRSE_ctx_candidate), file.path('BED','addiction_gwas_ctx_candidate.bed'))
-export.bed(rowRanges(snpRSE_str_candidate), file.path('BED','addiction_gwas_str_candidate.bed'))
-export.bed(rowRanges(snpRSE_candidate), file.path('BED','addiction_gwas_candidate.bed'))
-
-rsID = unique(unlist(sapply(indList, names)))
-write.table(rsID, col.names = F, row.names = F, quote = F,
-      file = paste0('tables/candidate_snp_ctx_str_delta',cutOff_delta,'.txt'))
-
 
 ##########################################
 # get loci to plot around candidate SNPs
-snpBlock1 = GRanges(unique(rowRanges(snpRSE_ctx_candidate)$GenomicLocus))
-start(snpBlock1) = floor(start(snpBlock1)/10^3 - 1)*10^3+1 # round to nearest 10kb
-end(snpBlock1) = ceiling(end(snpBlock1)/10^3 + 1)*10^3 # round to nearest 10kb
-export.bed(snpBlock1, file.path('BED','ctx_candidate_snpBlock.bed'))
-
-# get loci to plot around candidate SNPs
-snpBlock2 = GRanges(unique(rowRanges(snpRSE_str_candidate)$GenomicLocus))
-start(snpBlock2) = floor(start(snpBlock2)/10^3 - 1)*10^3+1 # round to nearest 10kb
-end(snpBlock2) = ceiling(end(snpBlock2)/10^3 + 1)*10^3 # round to nearest 10kb
-export.bed(snpBlock2, file.path('BED','str_candidate_snpBlock.bed'))
-
-# get loci to plot around candidate SNPs
-snpBlock3 = GRanges(unique(rowRanges(snpRSE_candidate)$GenomicLocus))
-start(snpBlock3) = floor(start(snpBlock3)/10^3 - 1)*10^3+1 # round to nearest 10kb
-end(snpBlock3) = ceiling(end(snpBlock3)/10^3 + 1)*10^3 # round to nearest 10kb
-export.bed(snpBlock3, file.path('BED','snp_candidate_snpBlock.bed'))
+snpBlock =  df_snp_long %>% arrange(chr, pos) %>% filter(tier == 'TierA') %>% 
+  distinct(GenomicLocus) %>% mutate(name = GenomicLocus, value = GenomicLocus) %>% 
+  select(value, name) %>% deframe() %>% GRanges()
+start(snpBlock) = floor(start(snpBlock)/10^3 - 1)*10^3+1 # round to nearest 1kb
+end(snpBlock) = ceiling(end(snpBlock)/10^3 + 1)*10^3 # round to nearest 1kb
+snpBlock = GenomicRanges::reduce(snpBlock)
+export.bed(snpBlock, file.path('BED','snp_candidate_snpBlock.bed'))
 
 
 ###########################################################
@@ -148,13 +76,12 @@ gtf = gtf[gtf$transcript_support_level %in% c(1, 2)]
 gtf = gtf[gtf$transcript_type %in% c('protein_coding', 'retained_intron', 
                                      'lncRNA','polymorphic_pseudogene')]
 
-# get loci to plot around candidate SNPs
-snpBlock = GRanges(unique(rowRanges(snpRSE_filtered)$GenomicLocus))
 # round to nearest 10kb
-start(snpBlock) = floor(start(snpBlock)/5/10^4 - 1)*5*10^4+1 - 10^5 
+snpBlock2 = snpBlock
+start(snpBlock2) = floor(start(snpBlock2)/5/10^4 - 1)*5*10^4+1 - 10^5 
 # round to nearest 10kb
-end(snpBlock) = ceiling(end(snpBlock)/5/10^4 + 1)*5*10^4 + 10^5
-oo = findOverlaps(query = gtf, subject = snpBlock)
+end(snpBlock2) = ceiling(end(snpBlock2)/5/10^4 + 1)*5*10^4 + 10^5
+oo = findOverlaps(query = gtf, subject = snpBlock2)
 gtf_filtered = gtf[unique(queryHits(oo))]
 export(gtf_filtered, 'gene_tracks/gencode.v32.basic.annotation.filtered.gtf')
 
