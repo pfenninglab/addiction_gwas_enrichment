@@ -89,7 +89,7 @@ def predict_sequences(model_name, x, ids):
     # predict labels
     # combineStrands will average the logit of the for and rev DNA strands
     model = load_model(model_name, compile=False)
-    y_pred_score = model.predict(x, verbose = args.verbose).flatten()
+    y_pred_score = model.predict(x).flatten()
     y_pred_score = np.nan_to_num(y_pred_score)
     df = pd.DataFrame({'id': ids, 'y_pred_logit': np.log10(y_pred_score) - np.log10(1-y_pred_score)})
     df = df.groupby(['id']).mean()
@@ -225,11 +225,11 @@ def main(args):
             return
         (x, ids) = encode_sequence3(args.predict_fasta, size = args.seq_length)
         df = predict_sequences(args.model_name, x, ids)
-        model_predictions = f'{args.out_dir}/predictions/{args.prefix}/{label}.predictions.txt'
+        model_predictions = f'{args.out_dir}/predictions/{args.prefix}/{label}.{args.predict_out}.predictions.txt'
         # save model performances to feather object
         if not os.path.exists(f'{args.out_dir}/predictions/{args.prefix}'):
             os.makedirs(f'{args.out_dir}/predictions/{args.prefix}') 
-        np.savetxt(model_predictions, df, axis = 1)
+        df.to_csv(model_predictions, sep = '\t')
         print(f'Prediction written to {model_predictions}')
     return
 
@@ -241,13 +241,14 @@ if __name__ == '__main__':
     parser.add_argument("--mode", type=str, help="Mode to perform. Train needs all fasta. Evaluate needs validation fasta. Predict only fasta passed predict_fasta.", 
         choices=['train', 'evaluate', 'predict'], default = 'train', required=False)
     #
-    parser.add_argument("--prefix", type=str, help="prefix of model.")
-    parser.add_argument("--model_name", type=str, help="complete model name")
-    parser.add_argument("--predict_fasta", type=str, help="fasta sequence file for predictions.")
-    parser.add_argument("--train_fasta_pos", type=str, help="training fasta sequence file of positives.")
-    parser.add_argument("--train_fasta_neg", type=str, help="training fasta sequence file of negatives.")
-    parser.add_argument("--valid_fasta_pos", type=str, help="validation fasta sequence file of positives.")
-    parser.add_argument("--valid_fasta_neg", type=str, help="validation fasta sequence file of negatives.")
+    parser.add_argument("--prefix", type=str, help="prefix of model.", required=False)
+    parser.add_argument("--model_name", type=str, help="complete model name", required=False)
+    parser.add_argument("--predict_out", type=str, help="prediction file prefix model name", required=False)
+    parser.add_argument("--predict_fasta", type=str, help="fasta sequence file for predictions.", required=False)
+    parser.add_argument("--train_fasta_pos", type=str, help="training fasta sequence file of positives.", required=False)
+    parser.add_argument("--train_fasta_neg", type=str, help="training fasta sequence file of negatives.", required=False)
+    parser.add_argument("--valid_fasta_pos", type=str, help="validation fasta sequence file of positives.", required=False)
+    parser.add_argument("--valid_fasta_neg", type=str, help="validation fasta sequence file of negatives.", required=False)
     #
     #### set cnn parameters:
     parser.add_argument("--seq_length", type=int, help="DNA sequence length.", default = 501, required=False)
