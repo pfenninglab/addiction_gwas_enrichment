@@ -1,0 +1,525 @@
+*********************************************************************
+* LD Score Regression (LDSC)
+* Version 1.0.1
+* (C) 2014-2019 Brendan Bulik-Sullivan and Hilary Finucane
+* Broad Institute of MIT and Harvard / MIT Department of Mathematics
+* GNU General Public License v3
+*********************************************************************
+Call: 
+./ldsc.py \
+--ref-ld-chr /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/background/eur_w_ld_chr/ \
+--out tables/p1_EduAttain-Lee_2018_correlation \
+--rg /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz,/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/AgeOfInitiation-Liu_2019.sumstats.gz,/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/BMD-Kemp_2017.sumstats.gz,/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/CAD-Howson_2017.sumstats.gz,/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/Cannabis-Pasman_2018.sumstats.gz,/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/ChronicPain-Johnston_2019.sumstats.gz,/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/CigarettesPerDay-Liu_2019.sumstats.gz,/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/CocaineDep-Dominguez_2019.sumstats.gz,/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/CoffeePerDay-Cornelis_2015.sumstats.gz,/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/DrinksPerWeek-Liu_2019.sumstats.gz,/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz,/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/LBM-Zillikens_2017.sumstats.gz,/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/OCD-IOCDF_2017.sumstats.gz,/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/OpioidDep-Cheng_2018.sumstats.gz,/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/RiskyBehavior-Linner_2019.sumstats.gz,/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/Schizophrenia-PGC_2014.sumstats.gz,/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/SleepDuration-Dashti_2019.sumstats.gz,/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/SmokingCessation-Liu_2019.sumstats.gz,/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/SmokingInitiation-Liu_2019.sumstats.gz \
+--w-ld-chr /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/background/eur_w_ld_chr/ 
+
+Beginning analysis at Mon Jun  1 01:14:06 2020
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz ...
+Read summary statistics for 1174916 SNPs.
+Reading reference panel LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/background/eur_w_ld_chr/[1-22] ...
+Read reference panel LD Scores for 1290028 SNPs.
+Removing partitioned LD Scores with zero variance.
+Reading regression weight LD Score from /projects/pfenninggroup/machineLearningForComputationalBiology/gwasEnrichments/background/eur_w_ld_chr/[1-22] ...
+Read regression weight LD Scores for 1290028 SNPs.
+After merging with reference panel LD, 1167771 SNPs remain.
+After merging with regression SNP LD, 1167771 SNPs remain.
+Computing rg for phenotype 2/19
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/AgeOfInitiation-Liu_2019.sumstats.gz ...
+Read summary statistics for 1215001 SNPs.
+After merging with summary statistics, 1167771 SNPs remain.
+1164905 SNPs with valid alleles.
+
+Heritability of phenotype 1
+---------------------------
+Total Observed scale h2: 0.0761 (0.002)
+Lambda GC: 2.094
+Mean Chi^2: 2.6531
+Intercept: 0.9784 (0.016)
+Ratio < 0 (usually indicates GC correction).
+
+Heritability of phenotype 2/19
+------------------------------
+Total Observed scale h2: 0.0474 (0.0029)
+Lambda GC: 1.194
+Mean Chi^2: 1.2186
+Intercept: 0.9779 (0.0077)
+Ratio < 0 (usually indicates GC correction).
+
+Genetic Covariance
+------------------
+Total Observed scale gencov: -0.0359 (0.0016)
+Mean z1*z2: -0.4421
+Intercept: -0.0597 (0.0073)
+
+Genetic Correlation
+-------------------
+Genetic Correlation: -0.5981 (0.022)
+Z-score: -27.2431
+P: 2.0068e-163
+
+Computing rg for phenotype 3/19
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/BMD-Kemp_2017.sumstats.gz ...
+Read summary statistics for 1215001 SNPs.
+After merging with summary statistics, 1167771 SNPs remain.
+1152160 SNPs with valid alleles.
+
+Heritability of phenotype 3/19
+------------------------------
+Total Observed scale h2: 0.376 (0.0409)
+Lambda GC: 1.4926
+Mean Chi^2: 2.1524
+Intercept: 1.0794 (0.031)
+Ratio: 0.0689 (0.0269)
+
+Genetic Covariance
+------------------
+Total Observed scale gencov: 0.0065 (0.0025)
+Mean z1*z2: 0.0512
+Intercept: 0.0098 (0.0081)
+
+Genetic Correlation
+-------------------
+Genetic Correlation: 0.0382 (0.0145)
+Z-score: 2.6307
+P: 0.0085
+
+Computing rg for phenotype 4/19
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/CAD-Howson_2017.sumstats.gz ...
+Read summary statistics for 1215001 SNPs.
+After merging with summary statistics, 1167771 SNPs remain.
+925040 SNPs with valid alleles.
+
+Heritability of phenotype 4/19
+------------------------------
+Total Observed scale h2: 0.0731 (0.0094)
+Lambda GC: 1.105
+Mean Chi^2: 1.145
+Intercept: 1.0251 (0.0089)
+Ratio: 0.173 (0.0615)
+
+Genetic Covariance
+------------------
+Total Observed scale gencov: -0.0167 (0.0024)
+Mean z1*z2: -0.1185
+Intercept: -0.0131 (0.0078)
+
+Genetic Correlation
+-------------------
+Genetic Correlation: -0.2255 (0.0332)
+Z-score: -6.7897
+P: 1.1235e-11
+
+Computing rg for phenotype 5/19
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/Cannabis-Pasman_2018.sumstats.gz ...
+Read summary statistics for 1215001 SNPs.
+After merging with summary statistics, 1167771 SNPs remain.
+1080438 SNPs with valid alleles.
+
+Heritability of phenotype 5/19
+------------------------------
+Total Observed scale h2: 0.1906 (0.0126)
+Lambda GC: 1.1973
+Mean Chi^2: 1.2243
+Intercept: 0.9995 (0.0083)
+Ratio < 0 (usually indicates GC correction).
+
+Genetic Covariance
+------------------
+Total Observed scale gencov: 0.0426 (0.0033)
+Mean z1*z2: 0.2657
+Intercept: 0.0526 (0.0077)
+
+Genetic Correlation
+-------------------
+Genetic Correlation: 0.3558 (0.0267)
+Z-score: 13.337
+P: 1.4101e-40
+
+Computing rg for phenotype 6/19
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/ChronicPain-Johnston_2019.sumstats.gz ...
+Read summary statistics for 1215001 SNPs.
+After merging with summary statistics, 1167771 SNPs remain.
+95682 SNPs with valid alleles.
+WARNING: number of SNPs less than 200k; this is almost always bad.
+
+Heritability of phenotype 6/19
+------------------------------
+Total Observed scale h2: 0.0715 (0.0092)
+Lambda GC: 1.4926
+Mean Chi^2: 1.6574
+Intercept: 1.0589 (0.0369)
+Ratio: 0.0895 (0.0562)
+
+Genetic Covariance
+------------------
+Total Observed scale gencov: -0.0324 (0.0046)
+Mean z1*z2: -0.5383
+Intercept: -0.0671 (0.0284)
+
+Genetic Correlation
+-------------------
+Genetic Correlation: -0.4414 (0.0548)
+Z-score: -8.05
+P: 8.2763e-16
+
+Computing rg for phenotype 7/19
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/CigarettesPerDay-Liu_2019.sumstats.gz ...
+Read summary statistics for 1215001 SNPs.
+After merging with summary statistics, 1167771 SNPs remain.
+1164900 SNPs with valid alleles.
+
+Heritability of phenotype 7/19
+------------------------------
+Total Observed scale h2: 0.075 (0.0097)
+Lambda GC: 1.2267
+Mean Chi^2: 1.3319
+Intercept: 0.9497 (0.0157)
+Ratio < 0 (usually indicates GC correction).
+
+Genetic Covariance
+------------------
+Total Observed scale gencov: 0.0214 (0.0015)
+Mean z1*z2: 0.2531
+Intercept: 0.033 (0.007)
+
+Genetic Correlation
+-------------------
+Genetic Correlation: 0.2827 (0.0259)
+Z-score: 10.9183
+P: 9.4213e-28
+
+Computing rg for phenotype 8/19
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/CocaineDep-Dominguez_2019.sumstats.gz ...
+Read summary statistics for 1215001 SNPs.
+After merging with summary statistics, 1167771 SNPs remain.
+1152863 SNPs with valid alleles.
+
+Heritability of phenotype 8/19
+------------------------------
+Total Observed scale h2: 0.4165 (0.0817)
+Lambda GC: 1.0618
+Mean Chi^2: 1.0694
+Intercept: 1.0184 (0.0068)
+Ratio: 0.2654 (0.0978)
+
+Genetic Covariance
+------------------
+Total Observed scale gencov: -0.092 (0.0077)
+Mean z1*z2: -0.1456
+Intercept: 0.0042 (0.0058)
+
+Genetic Correlation
+-------------------
+Genetic Correlation: -0.5178 (0.0589)
+Z-score: -8.7894
+P: 1.5041e-18
+
+Computing rg for phenotype 9/19
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/CoffeePerDay-Cornelis_2015.sumstats.gz ...
+Read summary statistics for 1215001 SNPs.
+After merging with summary statistics, 1167771 SNPs remain.
+1030655 SNPs with valid alleles.
+
+Heritability of phenotype 9/19
+------------------------------
+Total Observed scale h2: 0.0432 (0.0089)
+Lambda GC: 1.0649
+Mean Chi^2: 1.0846
+Intercept: 1.005 (0.008)
+Ratio: 0.059 (0.0948)
+
+Genetic Covariance
+------------------
+Total Observed scale gencov: -0.0013 (0.0022)
+Mean z1*z2: -0.0077
+Intercept: -0.0036 (0.0069)
+
+Genetic Correlation
+-------------------
+Genetic Correlation: -0.0232 (0.039)
+Z-score: -0.5957
+P: 0.5514
+
+Computing rg for phenotype 10/19
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/DrinksPerWeek-Liu_2019.sumstats.gz ...
+Read summary statistics for 1215001 SNPs.
+After merging with summary statistics, 1167771 SNPs remain.
+1164754 SNPs with valid alleles.
+
+Heritability of phenotype 10/19
+-------------------------------
+Total Observed scale h2: 0.0493 (0.0023)
+Lambda GC: 1.3169
+Mean Chi^2: 1.4494
+Intercept: 0.921 (0.0091)
+Ratio < 0 (usually indicates GC correction).
+
+Genetic Covariance
+------------------
+Total Observed scale gencov: -0.0023 (0.0012)
+Mean z1*z2: -0.0511
+Intercept: -0.0198 (0.0072)
+
+Genetic Correlation
+-------------------
+Genetic Correlation: -0.0376 (0.02)
+Z-score: -1.8781
+P: 0.0604
+
+Computing rg for phenotype 11/19
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz ...
+Read summary statistics for 1215001 SNPs.
+After merging with summary statistics, 1167771 SNPs remain.
+1167771 SNPs with valid alleles.
+
+Heritability of phenotype 11/19
+-------------------------------
+Total Observed scale h2: 0.076 (0.002)
+Lambda GC: 2.094
+Mean Chi^2: 2.6521
+Intercept: 0.9793 (0.016)
+Ratio < 0 (usually indicates GC correction).
+
+Genetic Covariance
+------------------
+Total Observed scale gencov: 0.076 (0.002)
+Mean z1*z2: 2.6521
+Intercept: 0.9793 (0.016)
+
+Genetic Correlation
+-------------------
+Genetic Correlation: 1. (1.0833e-08)
+Z-score: 92308616.5983
+P: 0.
+
+Computing rg for phenotype 12/19
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/LBM-Zillikens_2017.sumstats.gz ...
+Read summary statistics for 1215001 SNPs.
+After merging with summary statistics, 1167771 SNPs remain.
+1016723 SNPs with valid alleles.
+
+Heritability of phenotype 12/19
+-------------------------------
+Total Observed scale h2: 0.1302 (0.0149)
+Lambda GC: 1.0864
+Mean Chi^2: 1.0993
+Intercept: 0.9996 (0.0078)
+Ratio < 0 (usually indicates GC correction).
+
+Genetic Covariance
+------------------
+Total Observed scale gencov: 0.0004 (0.0033)
+Mean z1*z2: -0.0004
+Intercept: -0.0093 (0.0071)
+
+Genetic Correlation
+-------------------
+Genetic Correlation: 0.0039 (0.0334)
+Z-score: 0.1177
+P: 0.9063
+
+Computing rg for phenotype 13/19
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/OCD-IOCDF_2017.sumstats.gz ...
+Read summary statistics for 1215001 SNPs.
+After merging with summary statistics, 1167771 SNPs remain.
+1089548 SNPs with valid alleles.
+
+Heritability of phenotype 13/19
+-------------------------------
+Total Observed scale h2: 0.3198 (0.0498)
+Lambda GC: 1.0527
+Mean Chi^2: 1.0565
+Intercept: 0.9933 (0.0071)
+Ratio < 0 (usually indicates GC correction).
+
+Genetic Covariance
+------------------
+Total Observed scale gencov: 0.0372 (0.0062)
+Mean z1*z2: 0.0683
+Intercept: -0.008 (0.0067)
+
+Genetic Correlation
+-------------------
+Genetic Correlation: 0.239 (0.0413)
+Z-score: 5.7853
+P: 7.2397e-09
+
+Computing rg for phenotype 14/19
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/OpioidDep-Cheng_2018.sumstats.gz ...
+Read summary statistics for 1215001 SNPs.
+After merging with summary statistics, 1167771 SNPs remain.
+1157265 SNPs with valid alleles.
+
+Heritability of phenotype 14/19
+-------------------------------
+Total Observed scale h2: 0.041 (0.0575)
+Lambda GC: 1.0405
+Mean Chi^2: 1.0322
+Intercept: 1.0268 (0.0055)
+Ratio: 0.8319 (0.1721)
+
+Genetic Covariance
+------------------
+Total Observed scale gencov: -0.0296 (0.006)
+Mean z1*z2: -0.0447
+Intercept: 0.0062 (0.0053)
+
+Genetic Correlation
+-------------------
+Genetic Correlation: -0.532 (0.3949)
+Z-score: -1.3472
+P: 0.1779
+
+Computing rg for phenotype 15/19
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/RiskyBehavior-Linner_2019.sumstats.gz ...
+Read summary statistics for 1215001 SNPs.
+After merging with summary statistics, 1167771 SNPs remain.
+1165241 SNPs with valid alleles.
+
+Heritability of phenotype 15/19
+-------------------------------
+Total Observed scale h2: 0.1137 (0.0044)
+Lambda GC: 1.5217
+Mean Chi^2: 1.72
+Intercept: 1.0106 (0.0107)
+Ratio: 0.0147 (0.0149)
+
+Genetic Covariance
+------------------
+Total Observed scale gencov: -0.003 (0.0018)
+Mean z1*z2: -0.0047
+Intercept: 0.0377 (0.0082)
+
+Genetic Correlation
+-------------------
+Genetic Correlation: -0.0318 (0.02)
+Z-score: -1.5896
+P: 0.1119
+
+Computing rg for phenotype 16/19
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/Schizophrenia-PGC_2014.sumstats.gz ...
+Read summary statistics for 1215001 SNPs.
+After merging with summary statistics, 1167771 SNPs remain.
+1103673 SNPs with valid alleles.
+
+Heritability of phenotype 16/19
+-------------------------------
+Total Observed scale h2: 0.4701 (0.0189)
+Lambda GC: 1.5957
+Mean Chi^2: 1.7853
+Intercept: 1.0419 (0.0126)
+Ratio: 0.0533 (0.016)
+
+Genetic Covariance
+------------------
+Total Observed scale gencov: 0.0117 (0.0036)
+Mean z1*z2: 0.0619
+Intercept: -0.0096 (0.009)
+
+Genetic Correlation
+-------------------
+Genetic Correlation: 0.0617 (0.0192)
+Z-score: 3.2221
+P: 0.0013
+
+Computing rg for phenotype 17/19
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/SleepDuration-Dashti_2019.sumstats.gz ...
+Read summary statistics for 1215001 SNPs.
+After merging with summary statistics, 1167771 SNPs remain.
+1159384 SNPs with valid alleles.
+
+Heritability of phenotype 17/19
+-------------------------------
+Total Observed scale h2: 0.0682 (0.0031)
+Lambda GC: 1.4926
+Mean Chi^2: 1.6229
+Intercept: 1.0257 (0.0104)
+Ratio: 0.0413 (0.0167)
+
+Genetic Covariance
+------------------
+Total Observed scale gencov: -0.0073 (0.0013)
+Mean z1*z2: -0.0934
+Intercept: -0.0036 (0.007)
+
+Genetic Correlation
+-------------------
+Genetic Correlation: -0.1017 (0.018)
+Z-score: -5.665
+P: 1.4703e-08
+
+Computing rg for phenotype 18/19
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/SmokingCessation-Liu_2019.sumstats.gz ...
+Read summary statistics for 1215001 SNPs.
+After merging with summary statistics, 1167771 SNPs remain.
+1164978 SNPs with valid alleles.
+
+Heritability of phenotype 18/19
+-------------------------------
+Total Observed scale h2: 0.0316 (0.002)
+Lambda GC: 1.1459
+Mean Chi^2: 1.1765
+Intercept: 0.9815 (0.0075)
+Ratio < 0 (usually indicates GC correction).
+
+Genetic Covariance
+------------------
+Total Observed scale gencov: 0.0246 (0.0013)
+Mean z1*z2: 0.3283
+Intercept: 0.0369 (0.0065)
+
+Genetic Correlation
+-------------------
+Genetic Correlation: 0.5013 (0.0245)
+Z-score: 20.4557
+P: 5.3463e-93
+
+Computing rg for phenotype 19/19
+Reading summary statistics from /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/SmokingInitiation-Liu_2019.sumstats.gz ...
+Read summary statistics for 1215001 SNPs.
+After merging with summary statistics, 1167771 SNPs remain.
+1150610 SNPs with valid alleles.
+
+Heritability of phenotype 19/19
+-------------------------------
+Total Observed scale h2: 0.0693 (0.0024)
+Lambda GC: 1.4998
+Mean Chi^2: 1.7445
+Intercept: 0.8876 (0.0097)
+Ratio < 0 (usually indicates GC correction).
+
+Genetic Covariance
+------------------
+Total Observed scale gencov: 0.0263 (0.0014)
+Mean z1*z2: 0.4745
+Intercept: 0.0386 (0.0081)
+
+Genetic Correlation
+-------------------
+Genetic Correlation: 0.3622 (0.0156)
+Z-score: 23.181
+P: 7.0732e-119
+
+
+Summary of Genetic Correlation Results
+p1                                                                                                                                                             p2      rg          se           z            p  h2_obs  h2_obs_se  h2_int  h2_int_se  gcov_int  gcov_int_se
+/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz    /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/AgeOfInitiation-Liu_2019.sumstats.gz -0.5981  2.1953e-02 -2.7243e+01  2.0068e-163  0.0474     0.0029  0.9779     0.0077   -0.0597       0.0073
+/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz               /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/BMD-Kemp_2017.sumstats.gz  0.0382  1.4527e-02  2.6307e+00   8.5206e-03  0.3760     0.0409  1.0794     0.0310    0.0098       0.0081
+/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz             /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/CAD-Howson_2017.sumstats.gz -0.2255  3.3206e-02 -6.7897e+00   1.1235e-11  0.0731     0.0094  1.0251     0.0089   -0.0131       0.0078
+/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz        /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/Cannabis-Pasman_2018.sumstats.gz  0.3558  2.6677e-02  1.3337e+01   1.4101e-40  0.1906     0.0126  0.9995     0.0083    0.0526       0.0077
+/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz   /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/ChronicPain-Johnston_2019.sumstats.gz -0.4414  5.4829e-02 -8.0500e+00   8.2763e-16  0.0715     0.0092  1.0589     0.0369   -0.0671       0.0284
+/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz   /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/CigarettesPerDay-Liu_2019.sumstats.gz  0.2827  2.5891e-02  1.0918e+01   9.4213e-28  0.0750     0.0097  0.9497     0.0157    0.0330       0.0070
+/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz   /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/CocaineDep-Dominguez_2019.sumstats.gz -0.5178  5.8911e-02 -8.7894e+00   1.5041e-18  0.4165     0.0817  1.0184     0.0068    0.0042       0.0058
+/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz  /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/CoffeePerDay-Cornelis_2015.sumstats.gz -0.0232  3.8976e-02 -5.9566e-01   5.5140e-01  0.0432     0.0089  1.0050     0.0080   -0.0036       0.0069
+/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz      /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/DrinksPerWeek-Liu_2019.sumstats.gz -0.0376  2.0047e-02 -1.8781e+00   6.0374e-02  0.0493     0.0023  0.9210     0.0091   -0.0198       0.0072
+/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz          /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz  1.0000  1.0833e-08  9.2309e+07   0.0000e+00  0.0760     0.0020  0.9793     0.0160    0.9793       0.0160
+/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz          /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/LBM-Zillikens_2017.sumstats.gz  0.0039  3.3402e-02  1.1774e-01   9.0627e-01  0.1302     0.0149  0.9996     0.0078   -0.0093       0.0071
+/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz              /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/OCD-IOCDF_2017.sumstats.gz  0.2390  4.1312e-02  5.7853e+00   7.2397e-09  0.3198     0.0498  0.9933     0.0071   -0.0080       0.0067
+/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz        /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/OpioidDep-Cheng_2018.sumstats.gz -0.5320  3.9487e-01 -1.3472e+00   1.7790e-01  0.0410     0.0575  1.0268     0.0055    0.0062       0.0053
+/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz   /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/RiskyBehavior-Linner_2019.sumstats.gz -0.0318  1.9975e-02 -1.5896e+00   1.1192e-01  0.1137     0.0044  1.0106     0.0107    0.0377       0.0082
+/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz      /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/Schizophrenia-PGC_2014.sumstats.gz  0.0617  1.9161e-02  3.2221e+00   1.2727e-03  0.4701     0.0189  1.0419     0.0126   -0.0096       0.0090
+/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz   /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/SleepDuration-Dashti_2019.sumstats.gz -0.1017  1.7952e-02 -5.6650e+00   1.4703e-08  0.0682     0.0031  1.0257     0.0104   -0.0036       0.0070
+/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz   /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/SmokingCessation-Liu_2019.sumstats.gz  0.5013  2.4508e-02  2.0456e+01   5.3463e-93  0.0316     0.0020  0.9815     0.0075    0.0369       0.0065
+/projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/EduAttain-Lee_2018.sumstats.gz  /projects/pfenninggroup/machineLearningForComputationalBiology/addiction_gwas_enrichment/gwas_enrichment/gwas_sumstats/SmokingInitiation-Liu_2019.sumstats.gz  0.3622  1.5623e-02  2.3181e+01  7.0732e-119  0.0693     0.0024  0.8876     0.0097    0.0386       0.0081
+
+Analysis finished at Mon Jun  1 01:17:44 2020
+Total time elapsed: 3.0m:37.82s

@@ -2,7 +2,7 @@
 
 This repository contains the scripts used to perform the computational analyses in ["Addiction-associated genetic variants implicate cell type- and region-specific cis-regulatory elements in addiction neurobiology"](https://www.biorxiv.org/content/10.1101/2020.09.29.318329v2). 
 
-Sequencing output files for data generated in this study are deposited on the GEO at accession GSE161374.
+Sequencing output files for data generated in this study are deposited on the [GEO](https://www.ncbi.nlm.nih.gov/geo/) at accession GSE161374.
 
 ## GWAS Analysis
 
